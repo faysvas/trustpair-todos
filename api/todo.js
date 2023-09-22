@@ -9,32 +9,29 @@ import {
 
 const getRandomUser = async () => {
   try {
-    const response = await fetch('https://randomuser.me/api/?inc=name,email');
+    const response = await fetch('https://randomuser.me/api/?inc=name');
     const data = await response.json();
     const user = data.results[0];
-    console.log('user ', user);
-    return {
-      name: `${user.name.first} ${user.name.last}`,
-      email: user.email,
-    };
+
+    return `${user.name.first} ${user.name.last}`;
   } catch (err) {
     console.error(err);
     throw err;
   }
 };
 
-const addTodo = async ({ title, description, status }) => {
+const addTodo = async ({ userId, title, status }) => {
   try {
     // Get a random user
     const assignee = await getRandomUser();
-
+    console.log('in add ');
     // Create a new todo with assignee
     await addDoc(collection(db, 'todo'), {
-      title: title,
-      description: description,
-      status: status,
+      user: userId,
+      title,
+      status,
       createdAt: new Date().getTime(),
-      assignee: assignee,
+      assignee,
     });
   } catch (err) {
     console.log(err);
@@ -52,12 +49,12 @@ const toggleTodoStatus = async ({ docId, status }) => {
   }
 };
 
-const updateTodo = async ({ docId, title, description }) => {
+const updateTodo = async ({ docId, title, assignee }) => {
   try {
     const todoRef = doc(db, 'todo', docId);
     await updateDoc(todoRef, {
       title,
-      description,
+      assignee,
     });
   } catch (err) {
     console.log(err);
@@ -72,4 +69,4 @@ const deleteTodo = async (docId) => {
     console.log(err);
   }
 };
-export { addTodo, toggleTodoStatus, deleteTodo };
+export { addTodo, toggleTodoStatus, deleteTodo, updateTodo };

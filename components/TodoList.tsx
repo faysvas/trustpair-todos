@@ -26,12 +26,10 @@ const TodoList = () => {
   useEffect(() => {
     refreshData();
   }, [user]);
-
+  console.log(todos);
   return (
-    <div>
-      <div className="flex flex-col">
-        {todos && todos.map((todo) => <Todo key={todo.id} todo={todo} />)}
-      </div>
+    <div className="flex flex-col gap-2">
+      {todos && todos.map((todo) => <Todo key={todo.id} todo={todo} />)}
     </div>
   );
 };

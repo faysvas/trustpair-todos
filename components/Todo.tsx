@@ -1,47 +1,41 @@
 'use client';
-import React, { useEffect } from 'react';
+import React from 'react';
 
-import { FaToggleOff, FaToggleOn, FaTrash } from 'react-icons/fa';
-import { deleteTodo, toggleTodoStatus } from '../api/todo';
-import { Card, CardHeader } from './ui/card';
+import { Card, CardHeader, CardTitle, CardDescription } from './ui/card';
 import { Badge } from './ui/badge';
+import DeleteTodo from './DeleteTodo';
+import ToggleTodo from './ToggleTodo';
+import UpdateTodo from './UpdateTodo';
 const Todo = ({ todo }) => {
-  const handleTodoDelete = async (id) => {
-    if (confirm('Are you sure you wanna delete this todo?')) {
-      deleteTodo(id);
-      //  toast({ title: 'Todo deleted successfully', status: 'success' });
-    }
-  };
-  const handleToggle = async (id, status) => {
-    const newStatus = status == 'completed' ? 'pending' : 'completed';
-    await toggleTodoStatus({ docId: id, status: newStatus });
-    // toast({
-    //   title: `Todo marked ${newStatus}`,
-    //   status: newStatus == 'completed' ? 'success' : 'warning',
-    // });
-  };
   return (
     <Card>
       <CardHeader>
-        {todo.title}{' '}
-        <Badge onClick={() => handleTodoDelete(todo.id)}>
-          <FaTrash />
-        </Badge>
-        <Badge
-          color={todo.status == 'pending' ? 'gray.500' : 'green.500'}
-          onClick={() => handleToggle(todo.id, todo.status)}
-        >
-          {todo.status == 'pending' ? <FaToggleOff /> : <FaToggleOn />}
-        </Badge>
-        <Badge
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <ToggleTodo todo={todo} />
+            <div className="flex flex-col">
+              <CardTitle
+                className={todo.status == 'completed' ? 'line-through' : ''}
+              >
+                {todo.title}
+              </CardTitle>
+              <CardDescription>Assigned to {todo.assignee}</CardDescription>
+            </div>
+          </div>
+          <div className="flex gap-4">
+            <UpdateTodo todo={todo} />
+            <DeleteTodo todo={todo} />
+          </div>
+        </div>
+      </CardHeader>
+
+      {/* <Badge
           float="right"
           opacity="0.8"
           bg={todo.status == 'pending' ? 'yellow.500' : 'green.500'}
         >
           {todo.status}
-        </Badge>
-      </CardHeader>
-      <div>{todo.description}</div>
+        </Badge> */}
     </Card>
   );
 };

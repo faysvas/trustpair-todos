@@ -34,15 +34,19 @@ const Auth = () => {
   return (
     <div>
       {isLoggedIn && (
-        <>
-          <div className="green-500">{user.email}</div>
-          <Button color="red.500" onClick={() => auth.signOut()}>
+        <div className="flex flex-col gap-2">
+          <div className="text-white">{user.email}</div>
+          <Button variant="secondary" onClick={() => auth.signOut()}>
             Logout
           </Button>
-        </>
+        </div>
       )}
       {!isLoggedIn && (
-        <Button leftIcon={<FaGoogle />} onClick={() => handleAuth()}>
+        <Button
+          variant="secondary"
+          leftIcon={<FaGoogle />}
+          onClick={() => handleAuth()}
+        >
           Login with Google
         </Button>
       )}

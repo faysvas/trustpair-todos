@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { toggleTodoStatus } from '../api/todo';
 import { Button } from './ui/button';
@@ -17,12 +17,6 @@ const ToggleTodo = ({ todo }) => {
     >
       <Check className="h-4 w-4" />
     </Button>
-    // <Badge
-    //   color={todo.status == 'pending' ? 'gray.500' : 'green.500'}
-    //   onClick={() => handleToggle(todo.id, todo.status)}
-    // >
-    //   {todo.status == 'pending' ? <FaToggleOff /> : <FaToggleOn />}
-    // </Badge>
   );
 };
 

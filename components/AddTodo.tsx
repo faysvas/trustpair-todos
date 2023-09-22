@@ -4,8 +4,6 @@ import React from 'react';
 import useAuth from '../hooks/useAuth';
 import { addTodo } from '../api/todo';
 import { Input } from './ui/input';
-import { Textarea } from './ui/textarea';
-import { Select } from './ui/select';
 import { Button } from './ui/button';
 const AddTodo = () => {
   const [title, setTitle] = React.useState('');

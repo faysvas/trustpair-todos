@@ -2,7 +2,7 @@
 import React from 'react';
 
 import { Card, CardHeader, CardTitle, CardDescription } from './ui/card';
-import { Badge } from './ui/badge';
+
 import DeleteTodo from './DeleteTodo';
 import ToggleTodo from './ToggleTodo';
 import UpdateTodo from './UpdateTodo';
@@ -28,14 +28,6 @@ const Todo = ({ todo }) => {
           </div>
         </div>
       </CardHeader>
-
-      {/* <Badge
-          float="right"
-          opacity="0.8"
-          bg={todo.status == 'pending' ? 'yellow.500' : 'green.500'}
-        >
-          {todo.status}
-        </Badge> */}
     </Card>
   );
 };

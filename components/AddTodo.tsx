@@ -31,6 +31,7 @@ const AddTodo = () => {
     setDescription('');
     setStatus('pending');
   };
+
   return (
     <div>
       <div className="flex flex-col">
@@ -39,13 +40,13 @@ const AddTodo = () => {
           value={title}
           onChange={(e) => setTitle(e.target.value)}
         />
-        <div className="mb-3 pt-0">
+        {/* <div className="mb-3 pt-0">
           <input
             type="text"
             placeholder="Placeholder"
             className="px-2 py-1 placeholder-slate-300 text-slate-600 relative bg-white rounded text-sm border border-slate-300 outline-none focus:outline-none focus:ring w-full"
           />
-        </div>
+        </div> */}
         <Textarea
           placeholder="Description"
           value={description}
@@ -68,8 +69,6 @@ const AddTodo = () => {
         <Button
           onClick={() => handleTodoCreate()}
           disabled={title.length < 1 || description.length < 1 || isLoading}
-          variantColor="teal"
-          variant="solid"
         >
           Add
         </Button>

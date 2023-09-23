@@ -5,10 +5,10 @@ import AddTodo from '../components/AddTodo';
 import TodoList from '../components/TodoList';
 import RootLayout from './layout';
 export default function Home() {
-  const { isLoggedIn } = useAuth();
+  const { user } = useAuth();
   return (
     <div className="flex flex-col gap-8">
-      {isLoggedIn ? (
+      {user ? (
         <>
           <AddTodo />
           <TodoList />

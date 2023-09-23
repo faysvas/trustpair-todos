@@ -7,8 +7,8 @@ describe('Tests', () => {
     cy.get('#login').click({ force: true });
 
     /* ==== Generated with Cypress Studio ==== */
-    cy.get('#email').type('test@test.com');
-    cy.get('#password').type('test1234');
+    cy.get('#email').type(Cypress.env('test_username'));
+    cy.get('#password').type(Cypress.env('test_password'));
     cy.get('#login-button').click();
     cy.get('#user-email').contains('test@test.com');
   });

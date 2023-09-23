@@ -29,8 +29,7 @@ const AddTodo = () => {
   };
 
   return (
-    <div>
-      <div className="flex w-full items-center space-x-2">
+      <div className="add-todo flex w-full items-center space-x-2">
         <Input value={title} onChange={(e) => setTitle(e.target.value)} />
         <Button
           className="w-28"
@@ -40,7 +39,7 @@ const AddTodo = () => {
           Add Todo
         </Button>
       </div>
-    </div>
+
   );
 };
 export default AddTodo;

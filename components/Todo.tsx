@@ -13,7 +13,7 @@ interface TodoProps {
 
 const Todo: React.FC<TodoProps> = ({ todo }) => {
   return (
-    <Card>
+    <Card className="todo-card">
       <CardHeader>
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">

@@ -19,7 +19,7 @@ const ToggleTodo: React.FC<ToggleTodoProps> = ({ todo }) => {
       variant={todo.status == 'pending' ? 'outline' : 'default'}
       size="icon"
       onClick={() => handleToggle(todo.id, todo.status)}
-      className="rounded-full"
+      className="rounded-full toggle-todo"
     >
       <Check className="h-4 w-4" />
     </Button>

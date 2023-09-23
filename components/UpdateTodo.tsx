@@ -30,7 +30,7 @@ const UpdateTodo: React.FC<UpdateTodoProps> = ({ todo }) => {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="secondary" size="icon">
+        <Button className="update-todo-button" variant="secondary" size="icon">
           <Pencil className="h-4 w-4" />
         </Button>
       </DialogTrigger>
@@ -38,7 +38,7 @@ const UpdateTodo: React.FC<UpdateTodoProps> = ({ todo }) => {
         <DialogHeader>
           <DialogTitle>Update Todo</DialogTitle>
           <DialogDescription>
-            Update your Todo here. Click save when you&aposre done.
+            Update your Todo here. Click save when you're done.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">

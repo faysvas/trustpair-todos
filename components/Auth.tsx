@@ -6,16 +6,16 @@ import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
 import { auth } from '../firebase';
 import useAuth from '../hooks/useAuth';
 import { Button } from './ui/button';
-import Link from '@/node_modules/next/link';
+
 const Auth = () => {
-  const { isLoggedIn, user } = useAuth();
+  const { user } = useAuth();
   const handleAuth = async () => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then((result) => {
         // This gives you a Google Access Token. You can use it to access the Google API.
         const credential = GoogleAuthProvider.credentialFromResult(result);
-        const token = credential.accessToken;
+        const token = credential?.accessToken;
         // The signed-in user info.
         const user = result.user;
         // ...
@@ -31,17 +31,18 @@ const Auth = () => {
         // ...
       });
   };
+
   return (
     <div>
-      {isLoggedIn && (
+      {user && (
         <div className="flex flex-col gap-2">
-          <div className="text-white">{user.email}</div>
+          <div className="text-white">{user?.email}</div>
           <Button variant="secondary" onClick={() => auth.signOut()}>
             Logout
           </Button>
         </div>
       )}
-      {!isLoggedIn && (
+      {!user && (
         <Button variant="secondary" onClick={() => handleAuth()}>
           Login with Google
         </Button>

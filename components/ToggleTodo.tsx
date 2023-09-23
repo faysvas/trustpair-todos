@@ -15,7 +15,8 @@ const ToggleTodo: React.FC<ToggleTodoProps> = ({ todo }) => {
   };
   return (
     <Button
-      variant={todo.status == 'pending' ? 'outline' : ''}
+      // @ts-ignore
+      variant={todo.status == 'pending' ? 'outline' : 'default'}
       size="icon"
       onClick={() => handleToggle(todo.id, todo.status)}
       className="rounded-full"

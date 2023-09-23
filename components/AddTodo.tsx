@@ -4,28 +4,28 @@ import useAuth from '../hooks/useAuth';
 import { addTodo } from '../api/todo';
 import { Input } from './ui/input';
 import { Button } from './ui/button';
+import { AddTodoType } from '@/common/types/types';
 const AddTodo = () => {
   const [title, setTitle] = React.useState('');
   const [status, setStatus] = React.useState('pending');
   const [isLoading, setIsLoading] = React.useState(false);
 
-  const { isLoggedIn, user } = useAuth();
+  const { user } = useAuth();
   const handleTodoCreate = async () => {
-    if (!user) {
-      console.log('not logged in');
-      return
-    }
+
     setIsLoading(true);
     const todo = {
       title,
       status,
       userId: user?.uid,
-    };
+    } as AddTodoType;
 
     await addTodo(todo);
     setIsLoading(false);
     setTitle('');
     setStatus('pending');
+
+
   };
 
   return (
@@ -34,7 +34,7 @@ const AddTodo = () => {
         <Input value={title} onChange={(e) => setTitle(e.target.value)} />
         <Button
           className="w-28"
-          onClick={() => handleTodoCreate()}
+          onClick={() =>  handleTodoCreate() }
           disabled={title.length < 1 || isLoading}
         >
           Add Todo

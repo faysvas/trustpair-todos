@@ -6,7 +6,7 @@ import {
   doc,
   deleteDoc,
 } from 'firebase/firestore';
-import { TodoType } from '@/common/types/types';
+import { AddTodoType, TodoType } from '@/common/types/types';
 
 interface RandomUserName {
   name: {
@@ -28,7 +28,7 @@ const getRandomUser = async (): Promise<string> => {
   }
 };
 
-const addTodo = async ({ userId, title, status }: TodoType): Promise<void> => {
+const addTodo = async ({ userId, title, status }: AddTodoType): Promise<void> => {
   try {
     const assignee = await getRandomUser();
     await addDoc(collection(db, 'todo'), {

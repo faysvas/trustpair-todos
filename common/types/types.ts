@@ -1,4 +1,4 @@
-type StatusType: 'completed' | 'pending';
+type StatusType = 'completed' | 'pending';
 
 interface TodoType {
   id: string;
@@ -9,5 +9,11 @@ interface TodoType {
   assignee: string;
 }
 
+interface AddTodoType {
+  userId: string;
+  title: string;
+  status: StatusType
+}
 
-export {TodoType, StatusType}
+
+export type {TodoType, StatusType, AddTodoType}

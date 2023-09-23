@@ -10,7 +10,7 @@ const TodoList = () => {
   const [todos, setTodos] = useState<TodoType[]>([]);
   const { user } = useAuth();
 
-  const refreshData = (user: any) => {
+  const refreshData = () => {
     const q = query(collection(db, 'todo'), where('user', '==', user?.uid));
     onSnapshot(q, (querySnapshot:any) => {
       let arr: TodoType[] = [];
@@ -21,10 +21,7 @@ const TodoList = () => {
     });
   };
   useEffect(() => {
-    if (user) {
-      refreshData(user);
-    }
-
+      refreshData();
   }, [user]);
 
   return (

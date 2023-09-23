@@ -21,7 +21,10 @@ const TodoList = () => {
     });
   };
   useEffect(() => {
-      refreshData();
+    if (user) {
+  refreshData();
+    }
+
   }, [user]);
 
   return (

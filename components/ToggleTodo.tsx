@@ -3,8 +3,13 @@ import React from 'react';
 import { toggleTodoStatus } from '../api/todo';
 import { Button } from './ui/button';
 import { Check } from 'lucide-react';
-const ToggleTodo = ({ todo }) => {
-  const handleToggle = async (id, status) => {
+import { StatusType, TodoType } from '@/common/types/types';
+interface ToggleTodoProps {
+  todo: TodoType;
+}
+
+const ToggleTodo: React.FC<ToggleTodoProps> = ({ todo }) => {
+  const handleToggle = async (id:string, status: StatusType) => {
     const newStatus = status == 'completed' ? 'pending' : 'completed';
     await toggleTodoStatus({ docId: id, status: newStatus });
   };

@@ -1,35 +1,36 @@
 'use client';
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import useAuth from '../hooks/useAuth';
 import { collection, onSnapshot, query, where } from 'firebase/firestore';
 import { db } from '../firebase';
 
 import Todo from './Todo';
+import { TodoType} from '@/common/types/types';
 const TodoList = () => {
-  const [todos, setTodos] = React.useState([]);
+  const [todos, setTodos] = useState<TodoType[]>([]);
   const { user } = useAuth();
 
-  const refreshData = () => {
-    if (!user) {
-      setTodos([]);
-      return;
-    }
-    const q = query(collection(db, 'todo'), where('user', '==', user.uid));
-    onSnapshot(q, (querySnapshot) => {
-      let ar = [];
-      querySnapshot.docs.forEach((doc) => {
-        ar.push({ id: doc.id, ...doc.data() });
+  const refreshData = (user: any) => {
+    const q = query(collection(db, 'todo'), where('user', '==', user?.uid));
+    onSnapshot(q, (querySnapshot:any) => {
+      let arr: TodoType[] = [];
+      querySnapshot.docs.forEach((doc:any) => {
+        arr.push({ id: doc.id, ...doc.data() });
       });
-      setTodos(ar);
+      setTodos(arr);
     });
   };
   useEffect(() => {
-    refreshData();
+    if (user) {
+      refreshData(user);
+    }
+
   }, [user]);
 
   return (
     <div className="flex flex-col gap-2">
-      {todos && todos.map((todo) => <Todo key={todo.id} todo={todo} />)}
+      {todos && todos.sort((a, b) => b.status.localeCompare(a.status)).map((todo: TodoType) => <Todo key={todo.id} todo={todo} />)}
+
     </div>
   );
 };

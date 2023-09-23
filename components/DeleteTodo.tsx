@@ -14,9 +14,13 @@ import {
 } from '@/components/ui/alert-dialog';
 import { Trash2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { TodoType } from '@/common/types/types';
+interface DeleteTodoProps {
+  todo: TodoType;
+}
 
-const DeleteTodo = ({ todo }) => {
-  const handleTodoDelete = async (id) => {
+const DeleteTodo: React.FC<DeleteTodoProps> = ({ todo }) => {
+  const handleTodoDelete = async (id: string) => {
     deleteTodo(id);
   };
   return (

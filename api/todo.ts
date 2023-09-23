@@ -6,11 +6,19 @@ import {
   doc,
   deleteDoc,
 } from 'firebase/firestore';
+import { TodoType } from '@/common/types/types';
 
-const getRandomUser = async () => {
+interface RandomUserName {
+  name: {
+    first: string;
+    last: string;
+  };
+}
+
+const getRandomUser = async (): Promise<string> => {
   try {
     const response = await fetch('https://randomuser.me/api/?inc=name');
-    const data = await response.json();
+    const data: { results: RandomUserName[] } = await response.json();
     const user = data.results[0];
 
     return `${user.name.first} ${user.name.last}`;
@@ -20,12 +28,9 @@ const getRandomUser = async () => {
   }
 };
 
-const addTodo = async ({ userId, title, status }) => {
+const addTodo = async ({ userId, title, status }: TodoType): Promise<void> => {
   try {
-    // Get a random user
     const assignee = await getRandomUser();
-    console.log('in add ');
-    // Create a new todo with assignee
     await addDoc(collection(db, 'todo'), {
       user: userId,
       title,
@@ -38,7 +43,7 @@ const addTodo = async ({ userId, title, status }) => {
   }
 };
 
-const toggleTodoStatus = async ({ docId, status }) => {
+const toggleTodoStatus = async ({ docId, status }: { docId: string; status: string }): Promise<void> => {
   try {
     const todoRef = doc(db, 'todo', docId);
     await updateDoc(todoRef, {
@@ -49,7 +54,7 @@ const toggleTodoStatus = async ({ docId, status }) => {
   }
 };
 
-const updateTodo = async ({ docId, title, assignee }) => {
+const updateTodo = async ({ docId, title, assignee }: { docId: string; title: string; assignee: string }): Promise<void> => {
   try {
     const todoRef = doc(db, 'todo', docId);
     await updateDoc(todoRef, {
@@ -61,7 +66,7 @@ const updateTodo = async ({ docId, title, assignee }) => {
   }
 };
 
-const deleteTodo = async (docId) => {
+const deleteTodo = async (docId: string): Promise<void> => {
   try {
     const todoRef = doc(db, 'todo', docId);
     await deleteDoc(todoRef);
@@ -69,4 +74,5 @@ const deleteTodo = async (docId) => {
     console.log(err);
   }
 };
+
 export { addTodo, toggleTodoStatus, deleteTodo, updateTodo };

@@ -6,7 +6,12 @@ import { Card, CardHeader, CardTitle, CardDescription } from './ui/card';
 import DeleteTodo from './DeleteTodo';
 import ToggleTodo from './ToggleTodo';
 import UpdateTodo from './UpdateTodo';
-const Todo = ({ todo }) => {
+import { TodoType } from '@/common/types/types';
+interface TodoProps {
+  todo: TodoType;
+}
+
+const Todo: React.FC<TodoProps> = ({ todo }) => {
   return (
     <Card>
       <CardHeader>

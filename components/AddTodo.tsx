@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 
 import useAuth from '../hooks/useAuth';
@@ -12,16 +11,17 @@ const AddTodo = () => {
 
   const { isLoggedIn, user } = useAuth();
   const handleTodoCreate = async () => {
-    if (!isLoggedIn) {
+    if (!user) {
       console.log('not logged in');
+      return
     }
     setIsLoading(true);
     const todo = {
       title,
       status,
-      userId: user.uid,
+      userId: user?.uid,
     };
-    console.log('todo ', todo);
+
     await addTodo(todo);
     setIsLoading(false);
     setTitle('');

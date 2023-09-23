@@ -14,14 +14,17 @@ import { Label } from '@/components/ui/label';
 import { updateTodo } from '../api/todo';
 import { useState } from 'react';
 
-const UpdateTodo = ({ todo }) => {
+interface UpdateTodoProps {
+  todo: TodoType;
+}
+
+const UpdateTodo: React.FC<UpdateTodoProps> = ({ todo }) => {
   const [title, setTitle] = useState(todo.title);
   const [assignee, setAssignee] = useState(todo.assignee);
   const [open, setOpen] = useState(false);
 
   const handleTodoUpdate = async () => {
-    console.log({ title, assignee });
-    updateTodo({ docId: todo.id, title, assignee });
+    await updateTodo({ docId: todo.id, title, assignee });
     setOpen(false);
   };
   return (
@@ -35,7 +38,7 @@ const UpdateTodo = ({ todo }) => {
         <DialogHeader>
           <DialogTitle>Update Todo</DialogTitle>
           <DialogDescription>
-            Update your Todo here. Click save when you're done.
+            Update your Todo here. Click save when you&aposre done.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">

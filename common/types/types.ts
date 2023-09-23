@@ -4,7 +4,7 @@ interface TodoType {
   id: string;
   userId: string;
   title: string;
-  status: StatusType
+  status: StatusType;
   createdAt: number;
   assignee: string;
 }
@@ -12,8 +12,7 @@ interface TodoType {
 interface AddTodoType {
   userId: string;
   title: string;
-  status: StatusType
+  status: StatusType;
 }
 
-
-export type {TodoType, StatusType, AddTodoType}
+export type { TodoType, StatusType, AddTodoType };

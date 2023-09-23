@@ -27,6 +27,7 @@ const UpdateTodo: React.FC<UpdateTodoProps> = ({ todo }) => {
     await updateTodo({ docId: todo.id, title, assignee });
     setOpen(false);
   };
+
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>

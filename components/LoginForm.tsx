@@ -14,17 +14,14 @@ import { Label } from '@/components/ui/label';
 
 import { useState } from 'react';
 
-
-
 //import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
-
 
 const LoginForm = () => {
   const [open, setOpen] = useState(false);
-      const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const handleAuth = async () => {
     // const provider = new GoogleAuthProvider();
     // signInWithPopup(auth, provider)
@@ -46,20 +43,19 @@ const LoginForm = () => {
     //     const credential = GoogleAuthProvider.credentialFromError(error);
     //     // ...
     //   });
-        //    e.preventDefault();
+    //    e.preventDefault();
 
-        try {
-            await signInWithEmailAndPassword(auth, email, password);
-
-        } catch {
-          console.log("Wrong credentials")
-        }
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch {
+      console.log('Wrong credentials');
+    }
   };
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-                  <Button id="login" variant="secondary">
+        <Button id="login" variant="secondary">
           Login
         </Button>
       </DialogTrigger>
@@ -69,29 +65,31 @@ const LoginForm = () => {
         </DialogHeader>
         <div className="grid gap-4 py-4">
           <div className="w-full">
-                    <Input
+            <Input
               id="email"
-                          value={email}
-                          type="email"
-                          placeholder="Email"
+              value={email}
+              type="email"
+              placeholder="Email"
               onChange={(e) => setEmail(e.target.value)}
-
             />
           </div>
           <div className="w-full">
-
-                      <Input
-              id="email"
-                          type="password"
-                          placeholder="Password"
+            <Input
+              id="password"
+              type="password"
+              placeholder="Password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-
-          />
+            />
           </div>
         </div>
         <DialogFooter>
-          <Button className="w-full" type="submit" onClick={() => handleAuth()}>
+          <Button
+            id="login-button"
+            className="w-full"
+            type="submit"
+            onClick={() => handleAuth()}
+          >
             Login
           </Button>
         </DialogFooter>

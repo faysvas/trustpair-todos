@@ -26,7 +26,11 @@ const DeleteTodo: React.FC<DeleteTodoProps> = ({ todo }) => {
   return (
     <AlertDialog>
       <AlertDialogTrigger asChild>
-        <Button variant="destructive" size="icon">
+        <Button
+          className="delete-todo-button"
+          variant="destructive"
+          size="icon"
+        >
           <Trash2 className="h-4 w-4" />
         </Button>
       </AlertDialogTrigger>

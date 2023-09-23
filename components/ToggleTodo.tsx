@@ -9,10 +9,11 @@ interface ToggleTodoProps {
 }
 
 const ToggleTodo: React.FC<ToggleTodoProps> = ({ todo }) => {
-  const handleToggle = async (id:string, status: StatusType) => {
+  const handleToggle = async (id: string, status: StatusType) => {
     const newStatus = status == 'completed' ? 'pending' : 'completed';
     await toggleTodoStatus({ docId: id, status: newStatus });
   };
+
   return (
     <Button
       // @ts-ignore

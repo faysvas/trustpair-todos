@@ -12,7 +12,6 @@ const AddTodo = () => {
 
   const { user } = useAuth();
   const handleTodoCreate = async () => {
-
     setIsLoading(true);
     const todo = {
       title,
@@ -24,22 +23,20 @@ const AddTodo = () => {
     setIsLoading(false);
     setTitle('');
     setStatus('pending');
-
-
   };
 
   return (
-      <div className="add-todo flex w-full items-center space-x-2">
-        <Input value={title} onChange={(e) => setTitle(e.target.value)} />
-        <Button
-          className="w-28"
-          onClick={() =>  handleTodoCreate() }
-          disabled={title.length < 1 || isLoading}
-        >
-          Add Todo
-        </Button>
-      </div>
-
+    <div className="add-todo flex w-full items-center space-x-2">
+      <Input value={title} onChange={(e) => setTitle(e.target.value)} />
+      <Button
+        id="add-todo"
+        className="w-28"
+        onClick={() => handleTodoCreate()}
+        disabled={title.length < 1 || isLoading}
+      >
+        Add Todo
+      </Button>
+    </div>
   );
 };
 export default AddTodo;

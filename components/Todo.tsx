@@ -20,11 +20,15 @@ const Todo: React.FC<TodoProps> = ({ todo }) => {
             <ToggleTodo todo={todo} />
             <div className="flex flex-col">
               <CardTitle
-                className={todo.status == 'completed' ? 'line-through' : ''}
+                className={`${
+                  todo.status == 'completed' ? 'line-through' : ''
+                } todo-title`}
               >
                 {todo.title}
               </CardTitle>
-              <CardDescription>Assigned to {todo.assignee}</CardDescription>
+              <CardDescription className="todo-assignee">
+                Assigned to {todo.assignee}
+              </CardDescription>
             </div>
           </div>
           <div className="flex gap-4">

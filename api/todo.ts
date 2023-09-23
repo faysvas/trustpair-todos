@@ -28,7 +28,11 @@ const getRandomUser = async (): Promise<string> => {
   }
 };
 
-const addTodo = async ({ userId, title, status }: AddTodoType): Promise<void> => {
+const addTodo = async ({
+  userId,
+  title,
+  status,
+}: AddTodoType): Promise<void> => {
   try {
     const assignee = await getRandomUser();
     await addDoc(collection(db, 'todo'), {
@@ -43,7 +47,13 @@ const addTodo = async ({ userId, title, status }: AddTodoType): Promise<void> =>
   }
 };
 
-const toggleTodoStatus = async ({ docId, status }: { docId: string; status: string }): Promise<void> => {
+const toggleTodoStatus = async ({
+  docId,
+  status,
+}: {
+  docId: string;
+  status: string;
+}): Promise<void> => {
   try {
     const todoRef = doc(db, 'todo', docId);
     await updateDoc(todoRef, {
@@ -54,7 +64,15 @@ const toggleTodoStatus = async ({ docId, status }: { docId: string; status: stri
   }
 };
 
-const updateTodo = async ({ docId, title, assignee }: { docId: string; title: string; assignee: string }): Promise<void> => {
+const updateTodo = async ({
+  docId,
+  title,
+  assignee,
+}: {
+  docId: string;
+  title: string;
+  assignee: string;
+}): Promise<void> => {
   try {
     const todoRef = doc(db, 'todo', docId);
     await updateDoc(todoRef, {

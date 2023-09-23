@@ -2,7 +2,7 @@
 import React, { useState } from 'react';
 
 //import { signInWithPopup, GoogleAuthProvider } from 'firebase/auth';
-import { signInWithEmailAndPassword } from "firebase/auth";
+import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase';
 import useAuth from '../hooks/useAuth';
 import { Button } from './ui/button';
@@ -11,8 +11,8 @@ import LoginForm from './LoginForm';
 
 const Auth = () => {
   const { user } = useAuth();
-      const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const handleAuth = async () => {
     // const provider = new GoogleAuthProvider();
     // signInWithPopup(auth, provider)
@@ -34,36 +34,40 @@ const Auth = () => {
     //     const credential = GoogleAuthProvider.credentialFromError(error);
     //     // ...
     //   });
-        //    e.preventDefault();
+    //    e.preventDefault();
 
-        try {
-            await signInWithEmailAndPassword(auth, email, password);
-
-        } catch {
-          console.log("Wrong credentials")
-        }
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch {
+      console.log('Wrong credentials');
+    }
   };
 
   return (
     <div>
       {user && (
         <div className="flex gap-2 items-center">
-          <div className="user-email text-white">{user?.email}</div>
-          <Button id="logout" variant="secondary" onClick={() => auth.signOut()}>
+          <div id="user-email" className="text-white">
+            {user?.email}
+          </div>
+          <Button
+            id="logout"
+            variant="secondary"
+            onClick={() => auth.signOut()}
+          >
             Logout
           </Button>
         </div>
       )}
+
       {!user && (
         // <>
-
 
         //           <Button id="login" variant="secondary" onClick={() => handleAuth()}>
         //   Login
         // </Button>
         // </>
-        <LoginForm/>
-
+        <LoginForm />
       )}
     </div>
   );

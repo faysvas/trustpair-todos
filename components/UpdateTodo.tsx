@@ -39,7 +39,7 @@ const UpdateTodo: React.FC<UpdateTodoProps> = ({ todo }) => {
         <DialogHeader>
           <DialogTitle>Update Todo</DialogTitle>
           <DialogDescription>
-            Update your Todo here. Click save when you're done.
+            Update your Todo here. Click save when you are done.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">

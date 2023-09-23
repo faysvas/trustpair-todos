@@ -6,7 +6,7 @@ import Auth from '@/components/Auth';
 const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: 'Trustpair Todos',
+  title: 'Todos',
   description: 'Todo list',
 };
 
@@ -21,7 +21,7 @@ export default function RootLayout({
         <div className="md:w-[768px] m-auto flex flex-col gap-8 ">
           <header className="flex justify-between bg-blue-600 items-center p-4">
             <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight text-white">
-              Trustpair Todos
+              Todos
             </h1>
             <Auth />
           </header>
